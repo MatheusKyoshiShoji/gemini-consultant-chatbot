@@ -1,10 +1,18 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import "jsr:@std/dotenv/load";
+import { serveDir } from "jsr:@std/http/file-server";
 
-const genAI = new GoogleGenerativeAI(Deno.env.get("GEMINI_API_KEY")!);
-const model = genAI.getGenerativeModel({model: "gemini-1.5-flash"});
+function app(req: Request) {
+  const pathname = new URL(req.url).pathname;
 
-const prompt = "Qual seria importância dos parafusos para o nosso cotidiano";
+  if(pathname.startsWith("/public")) {
+    return serveDir(req, {
+      fsRoot: "public",
+      urlRoot: "public"
+    });
+  }
 
-const result = await model.generateContent(prompt);
-console.log(result.response.text());
+  return new Response("404: Not Found", {
+    status: 404
+  })
+}
+
+Deno.serve({ hostname: "localhost", port: 8080 }, app);
