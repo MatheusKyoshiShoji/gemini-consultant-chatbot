@@ -1,18 +1,7 @@
-import { serveDir } from "jsr:@std/http/file-server";
+import { rota } from "./src/routes/routes.ts";
 
-function app(req: Request) {
-  const pathname = new URL(req.url).pathname;
+const PORT = 8080
 
-  if(pathname.startsWith("/public")) {
-    return serveDir(req, {
-      fsRoot: "public",
-      urlRoot: "public"
-    });
-  }
+Deno.serve({ hostname: "localhost", port: PORT }, rota);
 
-  return new Response("404: Not Found", {
-    status: 404
-  })
-}
-
-Deno.serve({ hostname: "localhost", port: 8080 }, app);
+console.log(`Servidor rodando em http://localhost:${PORT}`);
