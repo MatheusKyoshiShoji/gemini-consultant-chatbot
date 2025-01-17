@@ -1,4 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    background: #4652ac;
+    height: 100vh;
+    font-family: "Roboto", serif;
+}
+
+.center-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .titulo {
-    color: blue;
-    text-decoration: underline yellow;
+    color: white;
+    font-size: 3em;
+    line-height: 1.2em;
+    font-weight: bold;
+    margin-bottom: 1em;
+    position: relative;
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        z-index: 999;
+        height: 2px;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+        background-position: 0% 0%;
+        background: linear-gradient(to right, #f8c71b, #D4AB17, #f8c71b, #D4AB17, #f8c71b, #f5f5f5);
+        animation: gradient 3s linear infinite;
+      }
+}
+
+label {
+    color: white;
+    font-size: 16px;
+    line-height: 2em;
+}
+
+.container-input {
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 2px;
+  padding: 1.2rem 1.7rem 1.3rem;
+  background: rgba(57, 63, 84, 0.8);
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 999;
+    height: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-position: 0% 0%;
+    background: linear-gradient(to right, #5968D9, #374187, #161A36, #374187, #161A36, #374187);
+    background-size: 500% auto;
+    animation: gradient 3s linear infinite;
+  }
+}
+
+input {
+    border-style: none;
+    background: transparent;
+    outline: none;
+}
+
+.input-prompt {
+    flex-grow: 1;
+    color: #BFD2FF;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    vertical-align: middle;
+    &::-webkit-input-placeholder {
+      color: #7881A1;
+    }
 }

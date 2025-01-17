@@ -1,6 +1,6 @@
 import { route, type Route } from "jsr:@std/http/unstable-route";
 import { serveDir } from "jsr:@std/http/file-server";
-import { getPromptTest } from "../controller/chatController.ts";
+import { getPromptTest, postPrompt } from "../controller/chatController.ts";
 
 const routes: Route[] = [
     {
@@ -11,6 +11,11 @@ const routes: Route[] = [
         method: ["GET"],
         pattern: new URLPattern({pathname: "/api/gemini"}),
         handler: getPromptTest
+    },
+    {
+        method: ["POST"],
+        pattern: new URLPattern({pathname: "/api/gemini/send"}),
+        handler: postPrompt
     }
 ];
 

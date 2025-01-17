@@ -13,6 +13,12 @@ const testPrompot = async () => {
     return result.response.text();
 }
 
+const sendPrompt = async (prompt :string) => {
+    const result = await model.generateContent(prompt);
 
+    console.log(result.response.text());
 
-export { testPrompot }
+    return result.response.text();
+}
+
+export { testPrompot, sendPrompt }
