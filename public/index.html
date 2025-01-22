@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <script defer src="scripts/chat.js"></script>
-
 </head>
 <body>
     <div class="center-container">
@@ -16,10 +14,12 @@
             <h1 class="titulo"> Bem vindo ao consultor JS !</h1>
             <label for="chatPrompt" />
             <div class="container-input">   
-                <input class="input-prompt" type="text" id="chatPrompt" placeholder="Realize sua pergunta">
+                <input class="input-prompt" type="text" id="chatPrompt" onkeydown="inptPromptValue(this)" placeholder="Realize sua pergunta">
             </div>
         </div> 
     </div>
 
 </body>
+
+<script src="scripts/chat.js"></script>
 </html>

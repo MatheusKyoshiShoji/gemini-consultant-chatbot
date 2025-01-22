@@ -6,5 +6,17 @@ export const getPromptTest = async (_req: Request): Promise<Response> => {
 }
 
 export const postPrompt = async (_req: Request): Promise<Response> => {
-    return new Response(sendPrompt('tome'), { status: 201, headers: { "Content-Type": "application/json"}})
+    try {
+        const response = await sendPrompt(_req);
+        return new Response(JSON.stringify({data: response}), { status: 201, headers: { "Content-Type": "application/json"}});
+    } catch (err: unknown) {
+        if (err instanceof SyntaxError) {
+            return new Response(JSON.stringify({ error: "Erro ao trator o prompt ", details: err.message }), {
+                status: 400,
+                headers: { "Content-Type": "application/json" }
+            })
+        }
+
+        throw err;
+    }
 }
