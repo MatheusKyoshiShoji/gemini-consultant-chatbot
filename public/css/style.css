@@ -14,6 +14,12 @@ body {
     justify-content: center;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
 .titulo {
     color: white;
     font-size: 3em;
@@ -53,7 +59,7 @@ label {
   margin: 0 auto;
   border-radius: 2px;
   padding: 1.2rem 1.7rem 1.3rem;
-  background: rgba(57, 63, 84, 0.8);
+  background: whitesmoke;
   &:after {
     content: "";
     position: absolute;
@@ -79,11 +85,69 @@ input {
 
 .input-prompt {
     flex-grow: 1;
-    color: #BFD2FF;
     font-size: 1.2rem;
     line-height: 2rem;
     vertical-align: middle;
     &::-webkit-input-placeholder {
       color: #7881A1;
     }
+}
+
+.layout-wrapper {
+  width: 964px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feed-chat-container {
+  width: 100%;
+  background-color: whitesmoke;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.chat-bubble {
+  background-color: #5968D9;
+  color: white;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px;
+  max-width: 300px;
+  align-self: flex-start;
+  position: relative;
+}
+
+.chat-bubble::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  border-width: 10px 10px 0 0;
+  border-style: solid;
+  border-color: #5968D9 transparent transparent transparent;
+}
+
+.chat-bubble-user {
+  background-color: #3A438C;
+  color: white;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px;
+  max-width: 300px;
+  align-self: flex-end;
+  position: relative;
+}
+
+.chat-bubble-user::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 20px;
+  border-width: 10px 0px 0 10px;
+  border-style: solid;
+  border-color: #3A438C transparent transparent transparent;
 }

@@ -10,13 +10,17 @@
 </head>
 <body>
     <div class="center-container">
-        <div>
-            <h1 class="titulo"> Bem vindo ao consultor JS !</h1>
-            <label for="chatPrompt" />
-            <div class="container-input">   
-                <input class="input-prompt" type="text" id="chatPrompt" onkeydown="inptPromptValue(this)" placeholder="Realize sua pergunta">
+        <div class="layout-wrapper flex-column">
+            <div>
+                <h1 class="titulo"> Bem vindo ao consultor JS !</h1>
+                <label for="chatPrompt" />
+                <div class="container-input">   
+                    <input class="input-prompt" type="text" id="chatPrompt" onkeydown="inptPromptValue(this)" placeholder="Realize sua pergunta">
+                </div>
+            </div> 
+            <div class="feed-chat-container" id="chat-container">
             </div>
-        </div> 
+        </div>
     </div>
 
 </body>
