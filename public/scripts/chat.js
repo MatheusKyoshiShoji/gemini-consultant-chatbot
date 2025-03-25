@@ -1,12 +1,12 @@
-let messages = [];
-const chatContainer = document.querySelector('chat-container');
+const messages = [];
+const chatContainer = document.querySelector('#chat-container');
 
-function insertGeminiMessage(geminiMessageContent) {
-  messages.push(geminiMessageContent);
+function insertUserMessage(geminiMessageContent) {
+  messages.push({message: geminiMessageContent, isUser: true});
 }
 
 function chatContentRendering() {
-  let chatContent = "";
+  let chatContent = '';
 
   for (const m of messages) {
       chatContent += `
@@ -15,13 +15,18 @@ function chatContentRendering() {
         </div>
       `
   }
-
   chatContainer.innerHTML = chatContent;
 }
 
-inptPromptValue = (element) => {
+function sendPrompt(element) {
+  if (event.key === 'Enter') {
+    insertUserMessage(element.value);
+  }
+}
+
+constinptPromptValue = (element) => {
   if (event.key === "Enter") {
-    const prompt = JSON.stringify(element.value);
+    const prompt = element.value;
 
     const headers = new Headers();
     headers.set("Content-Type", "text/html");
@@ -29,13 +34,22 @@ inptPromptValue = (element) => {
     fetch("/api/gemini/send", {
       headers: headers,
       method: "POST",
-      body: prompt,
+      body: JSON.stringify(prompt),
     })
       .then((response) => {
+        insertUserMessage(prompt);
+        chatContentRendering();
         console.log(response);
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        document.getElmentById('chatPrompt').value = '';
       });
   }
 };
+
+window.onload = (event) => {
+  chatContentRendering();
+}
