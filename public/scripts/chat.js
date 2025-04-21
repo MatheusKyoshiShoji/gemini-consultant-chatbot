@@ -1,55 +1,27 @@
-const messages = [];
 const chatContainer = document.querySelector('#chat-container');
 
-function insertUserMessage(geminiMessageContent) {
-  messages.push({message: geminiMessageContent, isUser: true});
-}
-
-function chatContentRendering() {
-  let chatContent = '';
-
-  for (const m of messages) {
-      chatContent += `
-        <div class="${m.isUser ? 'chat-bubble-user' : 'chat-bubble'}">
-          <p>${m.message}</p>
-        </div>
-      `
+function renderMessage(message, isUser = false) {
+  if(isUser == false) {
+    console.log('Server: ' + message);
   }
-  chatContainer.innerHTML = chatContent;
+
+  chatContainer.innerHTML += `
+      <div class="${isUser ? 'chat-bubble-user' : 'chat-bubble'}">
+          <p>${message}</p>
+      </div>
+  `;
 }
 
-function sendPrompt(element) {
+function sendMessage() {
+  const input = document.getElementById('chatPrompt');
+  const message = input.value;
+  socket.send(message);
+  renderMessage(`${message}`, true);
+  input.value = '';
+}
+
+document.getElementById('chatPrompt').addEventListener('keypress', function(event) {
   if (event.key === 'Enter') {
-    insertUserMessage(element.value);
+      sendMessage();
   }
-}
-
-constinptPromptValue = (element) => {
-  if (event.key === "Enter") {
-    const prompt = element.value;
-
-    const headers = new Headers();
-    headers.set("Content-Type", "text/html");
-
-    fetch("/api/gemini/send", {
-      headers: headers,
-      method: "POST",
-      body: JSON.stringify(prompt),
-    })
-      .then((response) => {
-        insertUserMessage(prompt);
-        chatContentRendering();
-        console.log(response);
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-      .finally(() => {
-        document.getElmentById('chatPrompt').value = '';
-      });
-  }
-};
-
-window.onload = (event) => {
-  chatContentRendering();
-}
+});

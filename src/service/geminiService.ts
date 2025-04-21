@@ -27,4 +27,17 @@ const sendPrompt = async (req :Request): Promise<string> => {
     }
 }
 
-export { testPrompot, sendPrompt }
+const sendPromptText = async (message: string): Promise<string> => {
+    try {
+        const result = await model.generateContent(message);
+
+        console.log(result.response.text());
+
+        return result.response.text();
+    } catch (error) {
+        console.error("Erro ao gerar texto do gemini", error);
+        throw error;
+    }
+}
+
+export { testPrompot, sendPrompt, sendPromptText }
