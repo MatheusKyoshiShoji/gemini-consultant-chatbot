@@ -1,5 +1,5 @@
 import { rota } from "./src/routes/routes.ts";
-import { handleSocket } from "./webSocketServer.ts";
+import { handleSocket } from "./src/ws/webSocketServer.ts";
 
 const PORT = 8080
 

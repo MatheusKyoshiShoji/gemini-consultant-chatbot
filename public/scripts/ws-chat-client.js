@@ -2,7 +2,7 @@ const socket = new WebSocket('ws://localhost:8080/ws');
 
 socket.onmessage = (event) => {
     const message = event.data;
-    renderMessage(`Server: ${message}`);
+    renderMessage(`${message}`);
 }
 
 socket.onopen = (event) => {

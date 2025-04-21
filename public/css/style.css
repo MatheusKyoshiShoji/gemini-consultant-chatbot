@@ -121,6 +121,16 @@ input {
   position: relative;
 }
 
+.chat-bubble strong {
+  font-weight: bolder;
+}
+
+.chat-bubble ul {
+  margin-left: 1.5rem;
+  list-style: circle;
+}
+
+
 .chat-bubble::before {
   content: "";
   position: absolute;
@@ -151,3 +161,4 @@ input {
   border-style: solid;
   border-color: #3A438C transparent transparent transparent;
 }
+

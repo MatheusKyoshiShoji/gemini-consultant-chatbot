@@ -1,13 +1,11 @@
 const chatContainer = document.querySelector('#chat-container');
 
 function renderMessage(message, isUser = false) {
-  if(isUser == false) {
-    console.log('Server: ' + message);
-  }
+  const formattedMessage = marked.parse(message);;
 
   chatContainer.innerHTML += `
       <div class="${isUser ? 'chat-bubble-user' : 'chat-bubble'}">
-          <p>${message}</p>
+          <p>${formattedMessage}</p>
       </div>
   `;
 }
